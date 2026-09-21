@@ -2,6 +2,17 @@ plugins {
     id 'com.android.application'
 }
 
+def releaseKeystoreFile = System.getenv("ANDROID_KEYSTORE_FILE")
+def releaseKeystorePassword = System.getenv("ANDROID_KEYSTORE_PASSWORD")
+def releaseKeyAlias = System.getenv("ANDROID_KEY_ALIAS")
+def releaseKeyPassword = System.getenv("ANDROID_KEY_PASSWORD")
+
+def hasReleaseSigning =
+        releaseKeystoreFile &&
+        releaseKeystorePassword &&
+        releaseKeyAlias &&
+        releaseKeyPassword
+
 android {
     namespace 'com.krianapps.warkoppos.sgl'
     compileSdk 36
@@ -14,11 +25,30 @@ android {
         versionName '1.0.0'
     }
 
+    signingConfigs {
+        release {
+            if (hasReleaseSigning) {
+                storeFile file(releaseKeystoreFile)
+                storePassword releaseKeystorePassword
+                keyAlias releaseKeyAlias
+                keyPassword releaseKeyPassword
+            }
+        }
+    }
+
     buildTypes {
         release {
             minifyEnabled false
             shrinkResources false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+
+            if (hasReleaseSigning) {
+                signingConfig signingConfigs.release
+            }
+        }
+
+        debug {
+            debuggable true
         }
     }
 
