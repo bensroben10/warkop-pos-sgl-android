@@ -1,0 +1,9 @@
+Warkop POS SGL Android wrapper
+
+This project is an independently prepared Android WebView wrapper for the Warkop POS SGL website. It implements native file chooser / camera handling so HTML file uploads can work inside the Android WebView.
+
+Reference consulted during preparation:
+https://github.com/Lewismwaz/Website-to-Apk
+
+The Warkop POS application itself remains hosted at:
+https://warkop-pos-single.netlify.app/

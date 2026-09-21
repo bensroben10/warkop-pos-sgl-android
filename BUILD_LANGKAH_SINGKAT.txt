@@ -1,0 +1,9 @@
+1. Install Android Studio terbaru.
+2. Buka Android Studio -> Open -> pilih folder WARKOP_POS_SGL_ANDROID_FREE.
+3. Tunggu Gradle Sync selesai.
+4. Hubungkan HP Android dengan USB debugging.
+5. Klik Run untuk memasang ke HP atau Build -> Build APK(s).
+6. APK debug biasanya berada di app/build/outputs/apk/debug/app-debug.apk
+
+Jangan ubah URL di MainActivity.java. URL yang dipakai sudah:
+https://warkop-pos-single.netlify.app/
